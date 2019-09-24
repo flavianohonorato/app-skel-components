@@ -20,7 +20,7 @@ Now run the following command to generate the PHINX configuration file ```vendor
 This command will generate the following file in the root of your project. ```phinx.yml```, insira suas credenciais.
 
 To create a migrations file, run: `vendor/bin/phinx create MigrationNameHere`.
-para mais detalhes sobre como criar suas migrations e seeds, acesse a [doc oficial do Phinx aqui](http://docs.phinx.org/en/latest/migrations.html)
+For more details on creating your migrations and seeds, visit the  [official Phinx doc here.](http://docs.phinx.org/en/latest/migrations.html)
 
 Components used:
 - [robmorgan/phinx](http://docs.phinx.org/en/latest/migrations.html)
