@@ -7,5 +7,4 @@
  */
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . 'src' . DS . 'config' . DS . 'global.php';
-require_once __DIR__ . 'src' . DS . 'routes.php';
+require_once __DIR__ . '/src' . DS . 'config' . DS . 'global.php';

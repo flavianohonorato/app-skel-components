@@ -6,7 +6,6 @@
  * Time: 15:40
  */
 
-define("DS", DIRECTORY_SEPARATOR);
 define("APP_URL", 'http://localhost:8000');
 define("VIEWS", __DIR__ . '/views/');
 

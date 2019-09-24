@@ -8,18 +8,38 @@
 
 require_once __DIR__ . '/../bootstrap.php';
 
-$container = new \Illuminate\Container\Container();
+use Illuminate\Container\Container;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
+use Illuminate\Routing\Router;
+use Illuminate\Routing\UrlGenerator;
 
-$request = \Illuminate\Http\Request::capture();
+// database
+$capsule = new Illuminate\Database\Capsule\Manager;
+$capsule->addConnection([
+    "driver"    => "mysql",
+    "host"      =>  DB_HOST,
+    "database"  =>  DB_NAME,
+    "username"  =>  DB_USER,
+    "password"  =>  DB_PASSWORD,
+    'charset'   =>  DB_CHARSET,
+    'collation' => 'utf8_unicode_ci',
+]);
 
-$container->instance(\Illuminate\Http\Request::class, $request);
+$capsule->setAsGlobal();
+$capsule->bootEloquent();
 
-$events = (new \Illuminate\Events\Dispatcher($container));
+$container = new Container();
+$request = Request::capture();
+$container->instance('Illuminate\Http\Request', $request);
+$events = new Dispatcher($container);
+$router = new Router($events, $container);
 
-$router = (new \Illuminate\Routing\Router($events,$container));
+require_once __DIR__ . '/../src' . DS . 'routes.php';
 
-$redirect = (new \Illuminate\Routing\Redirector(
-    new \Illuminate\Routing\UrlGenerator($router->getRoutes(),$request))
+$redirect = new Redirector(
+    new UrlGenerator($router->getRoutes(),$request)
 );
 
 $response = $router->dispatch($request);
