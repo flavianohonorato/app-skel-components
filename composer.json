@@ -13,7 +13,8 @@
         "illuminate/session": "^6.0",
         "illuminate/view": "^6.0",
         "illuminate/validation": "^6.0",
-        "illuminate/config": "^6.0"
+        "illuminate/config": "^6.0",
+        "robmorgan/phinx": "^0.11.1"
     },
     "authors": [
         {
